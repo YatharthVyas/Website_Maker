@@ -1,0 +1,20 @@
+.box{
+	padding:10px;
+	border: 1px solid #ccc;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+select{
+	padding: 5px;
+	margin-top: 5px;
+}
+.flex-box{
+	display: flex;
+}
+.flex-item{	
+	flex-grow: 1;
+}
+#headingName{
+	padding:5px;
+	margin-bottom: 5px;
+}

@@ -1,0 +1,33 @@
+.website-container {
+  margin-left: 10vw;
+  margin-right: 10vw;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: 2px solid lightgray;
+  padding: 10px;
+}
+.website-header {
+  margin-left: 10vw;
+}
+.flex {
+  display: flex;
+}
+.flex-header {
+  flex-grow: 4;
+}
+.flex-btn{
+  justify-content: flex-end;
+  flex-grow: 1;
+  margin: auto;
+}
+.toggleBtn {
+  background-color: #442244;
+  color: white;
+  font-size: 1em;
+  padding: 10px 30px 10px 30px;
+  border-radius: 15px;
+  border: 2px solid black;
+}
+.toggleBtn:hover{
+  background-color: #663356;
+}
