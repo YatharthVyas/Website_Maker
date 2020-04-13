@@ -22,18 +22,35 @@ export default function Heading(props){
 	const editIndex = (event) =>{
 		setIndex(event.target.value)
 	}
+	const setHTMLCode = () =>{
+		var code = ''
+		if(text!==''){
+			code+=`<h${7-index}`
+			if(color!=='#000000'){
+				code+=` style="color:${color}"`
+			}
+			if(align!=='left'){
+				code+=` align=${align}`
+			}
+			code+=`>${text}</h${7-index}>`
+			props.codeArr[props.codeCtr]= code
+		}
+	}
+
+	React.useEffect(setHTMLCode)
+
 	if(!props.preview){
 		return(
 			<div className="box">
 				<div align={align}>
-					<input type="text" style={{fontSize:`${2/(7-index)}em`}} id="headingName" onChange={editText} value={text} placeholder="Enter Heading Text"/>
+					<input type="text" style={{fontSize:`${2/(7-index)}em`,color:`${color}`}} id="headingName" onChange={editText} value={text} placeholder="Enter Heading Text"/>
 				</div>
 				<div className="flex-box">
 					<div className="flex-item">
 						<label>
 							Alignment:
 						</label>
-						<select value={align} onChange={editAlign}>
+						<select id="headingAlign" value={align} onChange={editAlign}>
 							<option value="left">Left</option>
 							<option value="center">Center</option>
 							<option value="right">Right</option>

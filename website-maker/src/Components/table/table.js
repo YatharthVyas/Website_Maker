@@ -1,10 +1,12 @@
 import React from 'react';
+import './table.css';
 
 function TableContent(props){
 
 	const handleChange = (event,row,column) =>{
-		props.cells[event.target.getAttribute('data_row')][event.target.getAttribute('data_column')]=event.target.value;
-		console.log(props.cells)
+		let arr = [...props.cells]
+		arr[event.target.getAttribute('data_row')][event.target.getAttribute('data_column')]=event.target.value;
+		props.setCells(arr);
 	}
 
 	var row_counter=0
@@ -17,7 +19,7 @@ function TableContent(props){
 				<td key={row_counter*10+column_counter}>
 				{props.preview?
 					<React.Fragment>
-						Cell={props.cells[row_counter][column_counter]}
+						{props.cells[row_counter][column_counter]}
 					</React.Fragment>
 					:
 					<input 
@@ -25,7 +27,7 @@ function TableContent(props){
 						data_column={column_counter} 
 						id={`table${row_counter}${column_counter}`} 
 						onChange={handleChange}
-						value={!!props.cells[row_counter][column_counter]?props.cells[row_counter][column_counter]:''}
+						value={props.cells[row_counter][column_counter]||''}
 						type="text"
 					/>
 				}
@@ -40,21 +42,26 @@ function TableContent(props){
 export default function Table(props){
 
 	const [cells,setCells]=React.useState([]);
-	for(var ctr=0;ctr<4;ctr++){
-		cells[ctr]= new Array(4)
-		console.log(1)
+
+	//We use the mounted hook to declare the array only once.
+	const [mounted,setMounted]=React.useState(false);
+	if(!mounted){
+		for(var ctr=0;ctr<4;ctr++){
+			cells[ctr]= new Array(4)
+		}
+		setMounted(true);
 	}
 
 	if(props.rows>=0 && props.columns>=0){	
 		return(
-			<div className={!props.preview?"box":''}>
+			<div className={!props.preview?"box":''} id={!props.preview?"tableContainer":''}>
 				<table 
 					border={1} 
 					cellPadding={!!props.cellPadding?props.cellPadding:'5px'} 
 					cellSpacing={!!props.cellSpacing?props.cellSpacing:'0px'}
 				>
 					<tbody>
-						<TableContent rows={props.rows} columns={props.columns} preview={props.preview} cells={cells}/>
+						<TableContent rows={props.rows} columns={props.columns} preview={props.preview} cells={cells} setCells={setCells}/>
 					</tbody>
 				</table>
 			</div>

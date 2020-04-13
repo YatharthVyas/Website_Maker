@@ -3,6 +3,7 @@
   margin-right: 10vw;
   margin-top: 20px;
   margin-bottom: 20px;
+  background-color: white;
   border: 2px solid lightgray;
   padding: 10px;
 }
@@ -30,4 +31,13 @@
 }
 .toggleBtn:hover{
   background-color: #663356;
+}
+button:focus {
+    outline: none;
+}
+.code-header {
+  margin-left: 10vw;
+}
+.code-box {
+  font-family: Courier New;
 }

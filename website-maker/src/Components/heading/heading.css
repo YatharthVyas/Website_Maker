@@ -4,12 +4,13 @@
 	margin-top: 5px;
 	margin-bottom: 5px;
 }
-select{
+#headingAlign{
 	padding: 5px;
 	margin-top: 5px;
 }
 .flex-box{
 	display: flex;
+	flex-wrap: wrap;
 }
 .flex-item{	
 	flex-grow: 1;
